@@ -202,7 +202,8 @@
       (file-name-directory file))))
 
 (defvar haskell-cabal-commands
-  '("install"
+  '("new-build"
+    "install"
     "update"
     "list"
     "info"

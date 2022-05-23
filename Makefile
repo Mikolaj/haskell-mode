@@ -48,7 +48,7 @@ ELCHECKS=$(addprefix check-, $(ELFILES:.el=))
 
 .PHONY: all compile info clean check $(ELCHECKS) elpa package
 
-all: compile $(AUTOLOADS) info
+all: compile $(AUTOLOADS) 
 
 compile: $(ELCFILES)
 

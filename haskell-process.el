@@ -295,8 +295,7 @@ changed. Restarts the process if that is the case."
 (defun haskell-process-cabal-build ()
   "Build the Cabal project."
   (interactive)
-  (haskell-process-do-cabal "build")
-  (haskell-process-add-cabal-autogen))
+  (haskell-process-do-cabal "new-build"))
 
 ;;;###autoload
 (defun haskell-process-cabal ()
@@ -331,7 +330,7 @@ to be loaded by ghci."
          (cadr state)
          (format ":!%s && %s"
                  (format "cd %s" (haskell-session-cabal-dir (car state)))
-                 (format "%s %s"
+                 (format "%s %s ."
                          (ecase haskell-process-type
                            ('ghci "cabal")
                            ('cabal-ghci "cabal")
@@ -341,7 +340,7 @@ to be loaded by ghci."
       :live
       (lambda (state buffer)
         (cond ((or (string= (caddr state) "build")
-                   (string= (caddr state) "install"))
+                   (string= (caddr state) "new-build"))
                (haskell-process-live-build (cadr state) buffer t))
               (t
                (haskell-process-cabal-live state buffer))))
